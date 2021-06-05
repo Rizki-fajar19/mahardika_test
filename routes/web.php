@@ -22,13 +22,16 @@ use App\Http\Controllers\HomeController;
 
 
 Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/ticket', [AdminController::class, 'ticket']);
-Route::get('/list', [AdminController::class, 'list']);
-Route::get('/user', [AdminController::class, 'user']);
-Route::get('/create', [AdminController::class, 'create']);
-Route::get('/edit', [AdminController::class, 'edit']);
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/ticket', [AdminController::class, 'ticket']);
+    Route::get('/list', [AdminController::class, 'list']);
+    Route::get('/user', [AdminController::class, 'user']);
+    Route::get('/create', [AdminController::class, 'create']);
+    Route::get('/edit', [AdminController::class, 'edit']);
+});
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/detail', [HomeController::class, 'detail']);
