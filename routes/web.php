@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/list', [AdminController::class, 'list']);
     Route::get('/user', [AdminController::class, 'user']);
     Route::get('/create', [AdminController::class, 'create']);
+    Route::post('/store', [AdminController::class, 'store'])->name('store');
     Route::get('/edit', [AdminController::class, 'edit']);
 });
 

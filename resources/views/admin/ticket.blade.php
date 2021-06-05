@@ -15,7 +15,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{url('/admin')}}">Home</a></li>
               <li class="breadcrumb-item active">Ticket</li>
             </ol>
           </div>
@@ -32,7 +32,9 @@
               <div class="card-header">
                   <div class="row">
                       <div class="col-2 ">
-                         <button type="button" class="btn btn-block btn-success">+Tambah</button>
+                        <a href="{{url('/create')}}">
+                          <div class="btn btn-block btn-success">+Tambah</div>
+                        </a>
                       </div>
                   </div>
                 

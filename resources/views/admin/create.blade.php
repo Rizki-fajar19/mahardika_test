@@ -11,12 +11,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>General Form</h1>
+            <h1>Form Tambah Data</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">General Form</li>
+              <li class="breadcrumb-item"><a href="{{url('/admin')}}">Home</a></li>
+              <li class="breadcrumb-item active">Form Tambah Data</li>
             </ol>
           </div>
         </div>
@@ -32,35 +32,62 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Quick Example</h3>
+                <h3 class="card-title">Tambah Data Tiket</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form action="{{route('store')}}" method="post" enctype="multipart/form-data">
+              {{ csrf_field() }}
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <label for="name">Nama Event</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Tambah Data">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <select name="day" class="form-control" required>
+                      <option value="">Pilih Hari</option>
+                      <option value="Senin">Senin</option>
+                      <option value="Selasa">Selasa</option>
+                      <option value="Rabu">Rabu</option>
+                      <option value="Kamis">Kamis</option>
+                      <option value="Jum'at">Jum'at</option>
+                      <option value="Sabtu">Sabtu</option>
+                      <option value="Minggu">Minggu</option>
+                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div>
-                    </div>
+                    <fieldset>
+                      <label for="date">Tanggal Event:</label>
+                      <input name="date" type="date" class="form-control datepicker" id="date" placeholder="Pilih tanggal..." value="">
+                    </fieldset>
                   </div>
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  <div class="form-group">
+                    <label for="jam_mulai">Jam Mulai</label>
+                    <input type="time" name="jam_mulai" id="jam_mulai" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="jam_selesai">Jam Selesai</label>
+                    <input type="time" name="jam_selesai" id="jam_selesai" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="price"><strong>Harga</strong></label>
+                    <input type="number" name="price" id="price" class="form-control" placeholder="Masukkan harga" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="discount"><strong>Harga Diskon</strong></label>
+                    <input type="number" name="discount" id="discount" class="form-control" placeholder="Masukkan harga diskon" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="stock"><strong>Stock</strong></label>
+                    <input type="number" name="stock" id="stock" class="form-control" placeholder="Masukkan stock" required>
+                  </div>
+                  <label for="desc"><strong>Deskripsi Event</strong></label>
+                  <div class="form-group">
+                    <textarea type="text" name="desc" id="desc" cols="70%" rows="3" placeholder="Deskripsi Event" required></textarea>
+                  </div>
+                  <label for="pict">Pilih Foto</label>
+                  <div class="form-group">
+                     <input type="file" name="pict" id="pict" class="dropify" data-height="190" required>
                   </div>
                 </div>
                 <!-- /.card-body -->
