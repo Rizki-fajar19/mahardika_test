@@ -31,8 +31,11 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/user', [AdminController::class, 'user']);
     Route::get('/create', [AdminController::class, 'create']);
     Route::post('/store', [AdminController::class, 'store'])->name('store');
-    Route::get('/edit', [AdminController::class, 'edit']);
+    Route::get('/edit/{id}', [AdminController::class, 'edit']);
+    Route::put('/ticket/{id}', [AdminController::class, 'update']);
+    Route::delete('/ticket/{id}', [AdminController::class, 'hapusdata']);
+    Route::delete('/user/{id}', [AdminController::class, 'hapususer']);
 });
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/detail', [HomeController::class, 'detail']);
+Route::get('/detail/{id}', [HomeController::class, 'detail']);

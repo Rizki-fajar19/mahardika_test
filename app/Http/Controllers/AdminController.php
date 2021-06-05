@@ -59,7 +59,48 @@ class AdminController extends Controller
         return redirect ('/ticket');
     }
 
-    public function edit(){
-        return view('admin.edit');
+    public function edit($id){
+        $ticket = Ticket::find($id);
+        return view('admin.edit', compact('ticket'));
+    }
+
+    public function update (Request $request, $id)
+    {
+        $update = Ticket::findorfail($id);
+        $gambar = $update->gambar;
+        if ($request['pict'] != null) {
+
+            $request->pict->move(public_path() . '/img/ticket', $gambar);
+        }
+
+        $ticket = [
+            'name' => $request['name'],
+            'day' => $request['day'],
+            'date' => $request['date'],
+            'jam_mulai' => $request['jam_mulai'],
+            'jam_selesai' => $request['jam_selesai'],
+            'price' => $request['price'],
+            'discount' => $request['discount'],
+            'stock' => $request['stock'],
+            'desc' => $request['desc'],
+            'pict' => $gambar,
+
+        ];
+        $update->update($ticket);
+        return redirect ('/ticket');
+    }
+
+    public function hapusdata($id)
+    {
+        $Ticket = Ticket::find($id);
+        $Ticket->delete();
+        return redirect('/ticket');
+    }
+
+    public function hapususer($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/user');
     }
 }

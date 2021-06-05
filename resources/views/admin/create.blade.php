@@ -95,8 +95,7 @@
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-              </form>
-            </div>
+               </div>
             <!-- /.card -->
 
                     <div class="form-group">

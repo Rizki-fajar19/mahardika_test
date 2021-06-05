@@ -22,39 +22,39 @@
             <div class="col-lg-12">
                 <h1 class="best text-center pb-3">Best Seller</h1>
             </div>
+            @foreach ($random as $acak)
             <div class="col-4">
-                <img src="{{asset('img/bestseller.jpg')}}" width="300" alt="sdaasdsad">
+                <img src="{{ asset('img/ticket/'.$acak->pict)}}" width="300" alt="Best Seller">
             </div>
-            <div class="col-4">
-                <img src="{{asset('img/bestseller.jpg')}}" width="300" alt="sdaasdsad">
-            </div>
-            <div class="col-4">
-                <img src="{{asset('img/bestseller.jpg')}}" width="300" alt="sdaasdsad">
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
 
 <!-- Content -->
 
+@foreach ($tickets as $ticket)
 <div class="container mb-4">
     <div class="card">
         <div class="row">
             <div class="col-lg-3">
-                <img class="card-img" src="{{asset('img/bestseller.jpg')}}" width="300" alt="">
+                <img class="card-img" src="{{ asset('img/ticket/'.$ticket->pict)}}" width="300" alt="Ticket">
             </div>
             <div class="col-lg-6">
-                <h1>Vehicula ut at.</h1>
-                <p><strong>Senin</strong> 15-12-2020</p>
-                <p><strong>18 : 00 - 23 : 00</strong> </p>
+                <a href="{{url('detail')}}/{{$ticket->id}}">
+                    <h1 class="title"><strong>{{$ticket->name}}</strong></h1>
+                </a>
+                <p class="jadwal"><strong class="orange">{{$ticket->day}}</strong> {{$ticket->date}}</p>
+                <p class="orange"><strong>{{$ticket->jam_mulai}} - {{$ticket->jam_selesai}}</strong></p>
             </div>
-            <div class="col-lg-3 justify-content-end">
-                <p class="text-decoration-line-through text-end"><strong>Rp. 50.000,-</strong></p>
-                <h5 class="text-end"><strong>Rp. 20.000,-</strong></h5>
+            <div class="col-lg-3">
+                <p class="text-decoration-line-through orange text-end"><strong>{{number_format($ticket->price)}}</strong></p>
+                <h3 class="text-end"><strong>{{number_format($ticket->discount)}}</strong></h3>
             </div>
         </div>
     </div>
 </div>
+@endforeach
 
 
 
