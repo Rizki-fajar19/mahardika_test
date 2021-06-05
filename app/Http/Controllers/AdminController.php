@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ticket;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -12,7 +13,11 @@ class AdminController extends Controller
     }
 
     public function ticket(){
-        return view('admin.ticket');
+
+        $i = 0;
+        $i++;
+        $tickets = Ticket::paginate(10);
+        return view ('admin.ticket', compact('tickets','i'));
     }
 
     public function list(){
@@ -20,7 +25,10 @@ class AdminController extends Controller
     }
 
     public function user(){
-        return view('admin.user');
+        $i = 0;
+        $i++;
+        $users = User::paginate(10);
+        return view ('admin.user', compact('users','i'));
     }
 
         public function create(){

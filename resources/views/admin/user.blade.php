@@ -37,23 +37,27 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td>X</td>
-                  </tr>
+                  @foreach ($users as $user)
+                    <tr>
+                      <td>{{$i++}}</td>
+                      <td>{{$user->name}}</td>
+                      <td>{{$user->email}}</td>
+                      <td>
+                        <form action="/user/{{$user->id}}" method="post">
+                          @method('DELETE')
+                          @csrf
+                          <button type="submit" class="btn btn-sm btn-primary btn-circle" style="float:right" onclick="return confirm('anda yakin ingin menghapus data?');">Hapus</button>
+                        </form>
+                      </td>
+                    </tr>
+                  @endforeach
                   </tbody>
                 </table>
               </div>

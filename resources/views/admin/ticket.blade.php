@@ -44,23 +44,46 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
+                    <th>No</th>
+                    <th>Nama Event</th>
+                    <th>Hari</th>
+                    <th>Tanggal</th>
+                    <th>Jam Mulai</th>
+                    <th>Jam Selesai</th>
+                    <th>Harga</th>
+                    <th>Diskon</th>
+                    <th>Stok</th>
+                    <th>Gambar</th>
+                    <th>Deskripsi Event</th>
+                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
+                  @foreach ($tickets as $ticket)
                   <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
+                    <td>{{$i++}}</td>
+                    <td>{{$ticket->name}}</td>
+                    <td>{{$ticket->day}}</td>
+                    <td>{{$ticket->date}}</td>
+                    <td>{{$ticket->jam_mulai}}</td>
+                    <td>{{$ticket->jam_selesai}}</td>
+                    <td>{{$ticket->price}}</td>
+                    <td>{{$ticket->discount}}</td>
+                    <td>{{$ticket->stock}}</td>
+                    <td>
+                      <img src="{{asset('img/ticket/'. $ticket->pict)}}" width="120" alt="Ticket">
                     </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td>X</td>
+                    <td>{{$ticket->desc}}</td>
+                    <td>       
+                      <a href="/edit/{{$ticket->id}}" class="btn btn-sm btn-primary btn-circle " style="float:left">Edit</a>
+                      <form action="/ticket/{{$ticket->id}}" method="post">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-primary btn-circle" style="float:right" onclick="return confirm('anda yakin ingin menghapus data?');">Hapus</button>
+                      </form>
+                    </td>
                   </tr>
+                  @endforeach
                   </tbody>
                 </table>
               </div>
